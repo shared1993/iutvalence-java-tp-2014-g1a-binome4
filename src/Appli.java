@@ -2,7 +2,8 @@
 public class Appli {
 
     public static void main(String[] args) {
-	Jeux Grille = new Jeux(); // Nouveau jeu
+	Morpion partie = new Morpion(); // Nouveau jeu
+	partie.jouer();
     }
     
 
