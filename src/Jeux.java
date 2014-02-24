@@ -13,7 +13,7 @@ public class Jeux {
  
     public void poserPion(){
 	if (tour == true){
-	    tableau[][] = {{0,0,0},{0,0,0},{0,0,0}};
+	   tableau[][] = {{0,0,0},{0,0,0},{0,0,0}};
 	    tour = !tour;
 	}
 	else{
