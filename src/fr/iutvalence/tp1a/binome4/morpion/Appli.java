@@ -1,3 +1,5 @@
+package fr.iutvalence.tp1a.binome4.morpion;
+
 /* TODO Javadoc */
 /* TODO Package. */
 public class Appli {
