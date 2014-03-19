@@ -15,7 +15,6 @@ public class Morpion {
     private int nbTour = 0;
     
     public Morpion() {
-        /* TODO Peut être simplifié en "new int [3][3]" parce que VIDE=0 */
         tableau = new int[3][3];
         tour = true;
         /** tour=true: le joueur 1 joue, tour=false: le joueur 2 joue */
