@@ -1,58 +1,53 @@
 package fr.iutvalence.tp1a.binome4.morpion;
-
+import java.util.Scanner;
 /**
  * @author culty & prinsac
  */
-import java.util.Scanner;
-import fr.iutvalence.tp1a.binome4.morpion.Pseudo;
 
 public class Morpion
 {
-	private static final int VIDE = 0;
-	private static final int pionJoueur1 = 1;
-	private static final int pionJoueur2 = 2;
-	private final int[][] tableau;
+	public static final int VIDE = 0;
+	public static final int pionJoueur1 = 1;
+	public static final int pionJoueur2 = 2;
+	public final int[][] tableau;
 	private boolean tour;
 	private int numLigne;
 	private int numColonne;
 	private int nbTour = 0;
-	private Scanner saisieLigne;
-	private Scanner saisieColonne;
-	private int scoreJ1 = 0;
-	private int scoreJ2 = 0;
 
 	public Morpion()
 	{
 		tableau = new int[3][3];
 		tour = true;
-		/** tour=true: le joueur 1 joue, tour=false: le joueur 2 joue */
 	}
 
-	public void jouer()
-	{
-		
-		System.out.println(pseudo.obtenirPseudoJ1());
-		System.out.println(pseudo.obtenirPseudoJ2());
+	public void jouer(){
+		System.out.println(toString());
+		while ((!victoire()) && (nbTour < 9))
+		{
+			saisir();
+			poserPion(numLigne, numColonne);
 			System.out.println(toString());
-			while ((!victoire()) && (nbTour < 9))
-			{
-				saisir();
-				poserPion(numLigne, numColonne);
-				System.out.println(toString());
-				victoire();
-			}
-			if((victoire()) && (tour)){
-				System.out.println("*************** " + pseudo.obtenirPseudoJ2() + " (O) GAGNE ***************");
-				scoreJ2++;
-			}
-			if((victoire()) && (!tour)){
-				System.out.println("*************** " + pseudo.obtenirPseudoJ1() + " (X) GAGNE ***************");
-				scoreJ1++;
-			}
-			if(!victoire())
-				System.out.println("*************** MATCH NUL ! ***************");
-			System.out.println(pseudo.obtenirPseudoJ1() + " = " + scoreJ1);
-			System.out.println(pseudo.obtenirPseudoJ2() + " = " + scoreJ2);
+			victoire();
+		}
+		if((victoire()) && (tour))
+		{
+			System.out.println("*************** " + Pseudo.pseudoJ2 + " (O) GAGNE ***************");
+			Score.gagne(Pseudo.pseudoJ2);
+		}
+		if((victoire()) && (!tour))
+		{
+			System.out.println("*************** " + Pseudo.pseudoJ1 + " (X) GAGNE ***************");
+			Score.gagne(Pseudo.pseudoJ1);
+		}
+		if(!victoire())
+		{
+			System.out.println("*************** MATCH NUL ! ***************");
+			Score.nul();
+		}
+		System.out.println(Pseudo.pseudoJ1 + " = " + Score.scoreJ1);
+		System.out.println(Pseudo.pseudoJ2 + " = " + Score.scoreJ2);
+		System.out.println("Nul = " + Score.scoreNul);
 	}
 
 	public void poserPion(int ligne, int colonne)
@@ -60,7 +55,7 @@ public class Morpion
 		if(tableau[ligne][colonne] != VIDE)
 		{
 			System.out.println("Case déjà occupée !");
-			jouer();
+			jouer(); /** A modifier pour redemander au joueur une nouvelle case disponible ! */
 		}
 		else
 		{
@@ -73,32 +68,35 @@ public class Morpion
 	public void saisir()
 	{
 		if(tour)
-			System.out.println("C'est à \"" + pseudo.obtenirPseudoJ1() + "\" de jouer (X):");
+			System.out.println("C'est à \"" + Pseudo.pseudoJ1 + "\" de jouer (X) :");
 		else
-			System.out.println("C'est à \"" + pseudo.obtenirPseudoJ2() + "\" de jouer (O):");
+			System.out.println("C'est à \"" + Pseudo.pseudoJ2 + "\" de jouer (O) :");
 		numLigne = 4;
 		while ((numLigne < 0) || (numLigne > 2))
 		{
-			saisieLigne = new Scanner(System.in);
-			System.out.println("Veuillez saisir le numéro de ligne :");
-			String ligne = saisieLigne.nextLine();
-			numLigne = Integer.parseInt(ligne);
+			Scanner ligne = new Scanner(System.in);
+			System.out.println("Entrez le numéro de ligne :");
+			String ligneS = ligne.nextLine();
+			numLigne = Integer.parseInt(ligneS);
 			numLigne = numLigne - 1;
 			if((numLigne < 0) || (numLigne > 2))
+			{
 				System.out.println("Hors tableau !");
+			}
 		}
 		numColonne = 4;
 		while ((numColonne < 0) || (numColonne > 2))
 		{
-			saisieColonne = new Scanner(System.in);
-			System.out.println("Veuillez saisir le numéro de colonne :");
-			String colonne = saisieColonne.nextLine();
-			numColonne = Integer.parseInt(colonne);
+			Scanner colonne = new Scanner(System.in);
+			System.out.println("Entrez le numéro de colonne :");
+			String colonneS = colonne.nextLine();
+			numColonne = Integer.parseInt(colonneS);
 			numColonne = numColonne - 1;
 			if((numColonne < 0) || (numColonne > 2))
+			{
 				System.out.println("Hors tableau !");
+			}
 		}
-
 	}
 
 	public boolean victoire()
@@ -112,5 +110,27 @@ public class Morpion
 				|| (((tableau[0][0] == tableau[1][1]) && (tableau[0][0] == tableau[2][2])) && (tableau[0][0] != VIDE))
 				|| (((tableau[0][2] == tableau[1][1]) && (tableau[0][2] == tableau[2][0])) && (tableau[0][2] != VIDE));
 	}
-
+	
+	public String toString()
+	{
+		String morpionAsciiArt = "";
+		for(int numeroDeLigne = 0; numeroDeLigne < 3; numeroDeLigne++)
+		{
+			morpionAsciiArt += "------------- \n";
+			for(int numeroDeColonne = 0; numeroDeColonne < 3; numeroDeColonne++)
+			{
+				morpionAsciiArt += "| ";
+				if(this.tableau[numeroDeLigne][numeroDeColonne] == VIDE)
+					morpionAsciiArt += "  ";
+				else if(this.tableau[numeroDeLigne][numeroDeColonne] == pionJoueur1)
+					morpionAsciiArt += "X ";
+				else
+					morpionAsciiArt += "O ";
+			}
+			morpionAsciiArt += "|";
+			morpionAsciiArt += "\n";
+		}
+		morpionAsciiArt += "------------- \n";
+		return morpionAsciiArt;
+	}
 }
