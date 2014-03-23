@@ -25,8 +25,10 @@ public class Morpion
 		System.out.println(toString());
 		while ((!victoire()) && (nbTour < 9))
 		{
-			saisir();
-			poserPion(numLigne, numColonne);
+			do{
+				saisir();
+			}while(!caseLibre(numLigne,numColonne));
+			poserPion(numLigne,numColonne);
 			System.out.println(toString());
 			victoire();
 		}
@@ -50,19 +52,24 @@ public class Morpion
 		System.out.println("Nul = " + Score.scoreNul);
 	}
 
-	public void poserPion(int ligne, int colonne)
+	public boolean caseLibre(int ligne,int colonne)
 	{
 		if(tableau[ligne][colonne] != VIDE)
 		{
 			System.out.println("Case déjà occupée !");
-			jouer(); /** A modifier pour redemander au joueur une nouvelle case disponible ! */
+			return false;
 		}
 		else
 		{
-			tableau[ligne][colonne] = tour ? pionJoueur1 : pionJoueur2;
-			tour = !tour;
-			nbTour++;
+			return true;
 		}
+	}
+	
+	public void poserPion(int ligne, int colonne)
+	{
+		tableau[ligne][colonne] = tour ? pionJoueur1 : pionJoueur2;
+		tour = !tour;
+		nbTour++;
 	}
 
 	public void saisir()
