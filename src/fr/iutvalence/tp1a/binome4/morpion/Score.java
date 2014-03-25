@@ -4,13 +4,13 @@ package fr.iutvalence.tp1a.binome4.morpion;
 /**
  * TODO.
  *
- * @author TODO
- * @version TODO
+ * @author Prinsac & Culty
+ * @version 1.0
  */
 public class Score
 {
     /** TODO. */
-	public static int scoreJ1;
+    public static int scoreJ1;
     /** TODO. */
     public static int scoreJ2;
     /** TODO. */
@@ -25,8 +25,8 @@ public class Score
     /* TODO Fonctionnement extrêmement discutable */
     /** TODO. */
     public static void gagne(String gagnant) {
-        if (gagnant == Pseudo.pseudoJ1) scoreJ1++;
-        if (gagnant == Pseudo.pseudoJ2) scoreJ2++;
+        if (gagnant == pseudoJ1) scoreJ1++;
+        if (gagnant == pseudoJ2) scoreJ2++;
     }
 
     /** TODO. */

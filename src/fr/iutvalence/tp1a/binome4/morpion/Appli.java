@@ -5,11 +5,11 @@ import java.util.Scanner;
 /**
  * TODO.
  *
- * @author TODO
- * @version TODO
+ * @author Prinsac & Culty
+ * @version 1.0
  */
 public class Appli
-{
+{    
 	public static void main(String[] args)
 	{
 		Scanner reader = new Scanner(System.in);
@@ -17,11 +17,8 @@ public class Appli
 		String pseudoJ1S = reader.nextLine();
 		System.out.println("Entrez le pseudo du joueur 2 (O) :");
 		String pseudoJ2S = reader.nextLine();
-		/* TODO Vous ne retenez pas les références ? */
-        new Pseudo(pseudoJ1S,pseudoJ2S);
 		new Score();
-        /* TODO Remplacez cette boucle infinie. */
-		while(true)
+		for(int nbPartie = 0;nbPartie<3;nbPartie++)
 		{
 			Morpion partie = new Morpion();
 			partie.jouer();
