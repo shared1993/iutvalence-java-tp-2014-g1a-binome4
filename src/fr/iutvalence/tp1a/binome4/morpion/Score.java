@@ -1,36 +1,44 @@
 package fr.iutvalence.tp1a.binome4.morpion;
 
-/* TODO Fonctionnement absolument pas objet ! À revoir. */
 /**
- * TODO.
- *
  * @author Prinsac & Culty
  * @version 1.0
  */
+
 public class Score
 {
-    /** TODO. */
-    public static int scoreJ1;
-    /** TODO. */
-    public static int scoreJ2;
-    /** TODO. */
-    public static int scoreNul;
+    /** Pseudo du joueur 1. */
+	private final String joueur1;
+	
+    /** Pseudo du joueur 2. */
+	private final String joueur2;
+	
+    /** Score du joueur 1. */
+    private int scoreJ1;
+    
+    /** Score du joueur 2. */
+    private int scoreJ2;
+    
+    /** Score Nul. */
+    private int scoreNul;
 
-    public Score() {
+    /** Constructeur de Score avec les 2 noms des joueurs. */
+    public Score(String joueur1, String joueur2) {
+    	this.joueur1 = joueur1;
+    	this.joueur2 = joueur2;
         scoreJ1 = 0;
         scoreJ2 = 0;
         scoreNul = 0;
     }
 
-    /* TODO Fonctionnement extrêmement discutable */
-    /** TODO. */
-    public static void gagne(String gagnant) {
-        if (gagnant == pseudoJ1) scoreJ1++;
-        if (gagnant == pseudoJ2) scoreJ2++;
+    /** Incremente le score des joueurs. */
+    public void gagne(String gagnant) {
+        if (gagnant.equals(Morpion.pseudoJ1))scoreJ1++;
+        if (gagnant.equals(Morpion.pseudoJ2))scoreJ2++;
     }
 
-    /** TODO. */
-    public static void nul() {
+    /** Incremente le score de Nul. */
+    public void nul() {
 		scoreNul++;
 	}
 }
