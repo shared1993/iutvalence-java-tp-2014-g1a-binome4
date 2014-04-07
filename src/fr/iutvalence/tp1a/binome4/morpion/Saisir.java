@@ -9,13 +9,13 @@ import java.util.Scanner;
 
 public class Saisir {
 
-	/** Saisie du numero de ligne et de colonne o� placer le pion. */
+	/** Saisie du numero de ligne et de colonne o� placer le pion. */
 	public static int[] saisir() {
 		int numLigne, numColonne;
 
 		if (Morpion.tour) {
 			System.out.printf("C'est à \"%s\" de jouer (X) :%n",
-					Morpion.pseudoJ1);
+					Joueur[tour]);
 		} else {
 			System.out.printf("C'est à \"%s\" de jouer (O) :%n",
 					Morpion.pseudoJ2);
