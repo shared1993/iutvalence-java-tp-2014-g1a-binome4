@@ -10,8 +10,11 @@ import static fr.iutvalence.tp1a.binome4.morpion.Pion.*;
 public class Morpion {
 	/** Déclaration du tableau du jeu. */
 	private final Pion[][] tableau;
+	/** Déclaration du tableau de joueur */
 	private final Joueur[] joueurs;
+	/** Déclaration du score */
 	private final Score score;
+	/** Indique a qui est le tour */
 	private int tour;
 	/** Compteur du nombre de tour. */
 	private int nbTour;
