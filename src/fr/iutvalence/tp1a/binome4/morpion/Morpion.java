@@ -1,7 +1,7 @@
 package fr.iutvalence.tp1a.binome4.morpion;
 
-import java.util.Scanner;
 import static fr.iutvalence.tp1a.binome4.morpion.Pion.*;
+
 
 /**
  * @author Prinsac & Culty
@@ -14,7 +14,7 @@ public class Morpion {
 	private final Score score;
 	private int tour;
 	/** Compteur du nombre de tour. */
-	private int nbTour = 0;
+	private int nbTour;
 
 	/** Initialisation du tableau et du tour. 
 	 * @param gestionnaireScore 
@@ -23,14 +23,21 @@ public class Morpion {
 	public Morpion(Joueur joueur1, Joueur joueur2, Score gestionnaireScore) {
 		this.joueurs = new Joueur[]{joueur1,joueur2};
 		score=gestionnaireScore;
-	    	tableau = new Pion[3][3];
-		tour = 0;
+	    tableau = new Pion[3][3];
+	    for(int i=0;i<3;i++){
+	    	for(int j=0;j<3;j++){
+	    		tableau[i][j] = VIDE;
+	    	}
+	    }
+	    tour = 0;
+		nbTour = 0;
 	}
 
 	/** G�re une partie. */
 	public void jouer() {
 		System.out.println(this);
 		while (!victoire() && (nbTour < 9)) {
+			System.out.printf("C'est à %s de jouer (%s) :%n", joueurs[tour].nom(), joueurs[tour].pion());
 			int[] saisie;
 			do {
 				saisie = Saisir.saisir();
@@ -41,12 +48,16 @@ public class Morpion {
 			victoire();
 		}
 		if (victoire()) {
-			System.out.printf("*************** %s (O) GAGNE ***************%n", joueurs[tour]);
-			Score.gagne(joueurs[tour]);
+			System.out.printf("*************** %s (%s) GAGNE ***************%n", joueurs[(tour+1)%2].nom(), joueurs[(tour+1)%2].pion());
+			score.gagne(joueurs[(tour+1)%2].nom());
 		}
-		System.out.printf("%s = %d%n", pseudoJ1, Score.getScore(joueurs[tour]));
-		System.out.printf("%s = %d%n", pseudoJ2, Score.scoreJ2);
-		System.out.printf("Nul = %d%n", Score.scoreNul);
+		else{
+			System.out.printf("*************** Nul GAGNE ***************%n");
+			score.nul();
+		}
+		System.out.printf("%s = %d%n", joueurs[0].nom(), score.getScore(joueurs[0].nom()));
+		System.out.printf("%s = %d%n", joueurs[1].nom(), score.getScore(joueurs[1].nom()));
+		System.out.printf("Nul = %d%n", score.getNul());
 	}
 
 	/** Retourne vrai si la case est libre, et faux si la case est occupée. */
@@ -60,7 +71,7 @@ public class Morpion {
 
 	/** Pose le pion, change le joueur, et incremente le compteur de tour. */
 	private void poserPion(int ligne, int colonne) {
-		tableau[ligne][colonne] = tour ? JOUEUR1 : JOUEUR2;
+		tableau[ligne][colonne] = tour == 0 ? X : O;
 		tour = (tour+1)%2;
 		nbTour++;
 	}
@@ -86,7 +97,7 @@ public class Morpion {
 				morpionAsciiArt += "| ";
 				if (this.tableau[numeroDeLigne][numeroDeColonne] == VIDE)
 					morpionAsciiArt += "  ";
-				else if (this.tableau[numeroDeLigne][numeroDeColonne] == JOUEUR1)
+				else if (this.tableau[numeroDeLigne][numeroDeColonne] == X)
 					morpionAsciiArt += "X ";
 				else
 					morpionAsciiArt += "O ";
@@ -96,4 +107,5 @@ public class Morpion {
 		morpionAsciiArt += "------------- \n";
 		return morpionAsciiArt;
 	}
+	
 }

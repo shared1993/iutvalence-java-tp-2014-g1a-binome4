@@ -9,17 +9,9 @@ import java.util.Scanner;
 
 public class Saisir {
 
-	/** Saisie du numero de ligne et de colonne o� placer le pion. */
+	/** Saisie du numero de ligne et de colonne où placer le pion. */
 	public static int[] saisir() {
 		int numLigne, numColonne;
-
-		if (Morpion.tour) {
-			System.out.printf("C'est à \"%s\" de jouer (X) :%n",
-					Joueur[tour]);
-		} else {
-			System.out.printf("C'est à \"%s\" de jouer (O) :%n",
-					Morpion.pseudoJ2);
-		}
 		numLigne = 4;
 		Scanner reader = new Scanner(System.in);
 		while ((numLigne < 0) || (numLigne > 2)) {
@@ -40,6 +32,6 @@ public class Saisir {
 			}
 		}
 
-		return new int[]{numLigne,numColonne};
+		return new int[] { numLigne, numColonne };
 	}
 }

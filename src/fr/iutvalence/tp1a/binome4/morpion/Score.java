@@ -37,17 +37,23 @@ public class Score {
 	if (joueur.equals(joueur2.nom()))
 	    scoreJ2++;
     }
+    
+    /** Incremente le score des joueurs. */
+    public void nul(){
+    	scoreNul++;
+    }
 
     /** Donne le score de Nul. */
     public int getNul() {
-	return scoreNul;
+    	return scoreNul;
     }
     
     /** Donne le score des joueurs. */
-    public int getScore(Joueur[] joueur) {
+    public int getScore(String joueur) {
 	if (joueur.equals(joueur1.nom()))
 	    return scoreJ1;
 	if (joueur.equals(joueur2.nom()))
 	    return scoreJ2;
+	return -1;
     }
 }

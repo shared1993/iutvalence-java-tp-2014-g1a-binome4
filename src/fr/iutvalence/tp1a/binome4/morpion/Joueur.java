@@ -11,15 +11,15 @@ public class Joueur {
     private final Pion pion;
 
     public Joueur(String nom, Pion pion) {
-	this.nom = nom;
-	this.pion = pion;
+    	this.nom = nom;
+		this.pion = pion;
     }
     
     public String nom() {
-	return nom;
+    	return nom;
     }
     
     public Pion pion() {
-	return pion;
+    	return pion;
     }
 }
