@@ -3,8 +3,8 @@ package fr.iutvalence.tp1a.binome4.morpion;
 /**
  * Joueur : nom et pion.
  *
- * @author TODOs
- * @version 1.0.0
+ * @author Prinsac & Culty
+ * @version 2.0.0
  */
 public final class Joueur {
     /** Nom. */
