@@ -19,29 +19,29 @@ public class Morpion {
 	/** Compteur du nombre de tour. */
 	private int nbTour;
     /** IHM. */
-    private final Saisir m_console;
+    private final Console m_console;
 
-	/** Initialisation du tableau et du tour. 
-	 * @param gestionnaireScore 
-	 * @param joueur2 
-	 * @param joueur1 */
-	public Morpion(Joueur joueur1, Joueur joueur2, Score gestionnaireScore) {
-		this.joueurs = new Joueur[]{joueur1,joueur2};
-		score=gestionnaireScore;
-	    tableau = new Pion[3][3];
-	    for(int i=0;i<3;i++){
-	    	for(int j=0;j<3;j++){
-	    		tableau[i][j] = VIDE;
-	    	}
-	    }
-        m_console = new Saisir();
-	    tour = 0;
-		nbTour = 0;
-	}
+    /** Initialisation du tableau et du tour.
+     * @param gestionnaireScore
+     * @param joueur2
+     * @param joueur1 */
+    public Morpion(Joueur joueur1, Joueur joueur2, Score gestionnaireScore) {
+        this.joueurs = new Joueur[]{joueur1, joueur2};
+        score = gestionnaireScore;
+        tableau = new Pion[3][3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                tableau[i][j] = VIDE;
+            }
+        }
+        m_console = new Console();
+        tour = 0;
+        nbTour = 0;
+    }
 
-	/** G�re une partie. */
-	public void jouer() {
-		System.out.println(this);
+    /** G�re une partie. */
+    public void jouer() {
+        System.out.println(this);
 		while (!victoire() && (nbTour < 9)) {
 			System.out.printf("C'est à %s de jouer (%s) :%n", joueurs[tour].nom(), joueurs[tour].pion());
 			int[] saisie;

@@ -9,11 +9,11 @@ import java.util.Scanner;
  * @version 1.0.0
  */
 @SuppressWarnings("HardCodedStringLiteral")
-public final class Saisir {
+public final class Console {
     /** Scanner utilisé pour les saisies. */
     private final Scanner m_scanner;
 
-    public Saisir() {
+    public Console() {
         m_scanner = new Scanner(System.in, "UTF-8");
     }
 
