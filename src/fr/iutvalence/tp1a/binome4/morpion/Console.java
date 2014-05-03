@@ -5,8 +5,8 @@ import java.util.Scanner;
 /**
  * TODO.
  *
- * @author Anthony GELIBERT
- * @version 1.0.0
+ * @author Prinsac & Culty
+ * @version 2.0.0
  */
 @SuppressWarnings("HardCodedStringLiteral")
 public final class Console {
