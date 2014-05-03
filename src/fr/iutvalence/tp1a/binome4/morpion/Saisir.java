@@ -1,37 +1,46 @@
 package fr.iutvalence.tp1a.binome4.morpion;
 
-/**
- * @author Prinsac & Culty
- * @version 1.0
- */
-
 import java.util.Scanner;
 
-public class Saisir {
+/**
+ * TODO.
+ *
+ * @author Anthony GELIBERT
+ * @version 1.0.0
+ */
+@SuppressWarnings("HardCodedStringLiteral")
+public final class Saisir {
+    /** Scanner utilisé pour les saisies. */
+    private final Scanner m_scanner;
 
-	/** Saisie du numero de ligne et de colonne où placer le pion. */
-	public static int[] saisir() {
-		int numLigne, numColonne;
-		numLigne = 4;
-		Scanner reader = new Scanner(System.in);
-		while ((numLigne < 0) || (numLigne > 2)) {
-			System.out.println("Entrez le numéro de ligne :");
-			numLigne = reader.nextInt();
-			numLigne = numLigne - 1;
-			if ((numLigne < 0) || (numLigne > 2)) {
-				System.out.println("Hors tableau !");
-			}
-		}
-		numColonne = 4;
-		while ((numColonne < 0) || (numColonne > 2)) {
-			System.out.println("Entrez le numéro de colonne :");
-			numColonne = reader.nextInt();
-			numColonne = numColonne - 1;
-			if ((numColonne < 0) || (numColonne > 2)) {
-				System.out.println("Hors tableau !");
-			}
-		}
+    public Saisir() {
+        m_scanner = new Scanner(System.in, "UTF-8");
+    }
 
-		return new int[] { numLigne, numColonne };
-	}
+    /** Saisie du numero de ligne et de colonne où placer le pion. */
+    public int[] saisirCoordonnees() {
+        int numLigne = 4;
+        while ((numLigne < 0) || (numLigne > 2)) {
+            System.out.println("Entrez le numéro de ligne :");
+            numLigne = m_scanner.nextInt() - 1;
+            if ((numLigne < 0) || (numLigne > 2)) {
+                System.out.println("Hors tableau !");
+            }
+        }
+        int numColonne = 4;
+        while ((numColonne < 0) || (numColonne > 2)) {
+            System.out.println("Entrez le numéro de colonne :");
+            numColonne = m_scanner.nextInt() - 1;
+            if ((numColonne < 0) || (numColonne > 2)) {
+                System.out.println("Hors tableau !");
+            }
+        }
+
+        return new int[]{numLigne, numColonne};
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Saisir{m_scanner=%s}", m_scanner);
+    }
 }

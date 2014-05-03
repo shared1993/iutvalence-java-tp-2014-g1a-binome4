@@ -18,6 +18,8 @@ public class Morpion {
 	private int tour;
 	/** Compteur du nombre de tour. */
 	private int nbTour;
+    /** IHM. */
+    private final Saisir m_console;
 
 	/** Initialisation du tableau et du tour. 
 	 * @param gestionnaireScore 
@@ -32,6 +34,7 @@ public class Morpion {
 	    		tableau[i][j] = VIDE;
 	    	}
 	    }
+        m_console = new Saisir();
 	    tour = 0;
 		nbTour = 0;
 	}
@@ -43,7 +46,7 @@ public class Morpion {
 			System.out.printf("C'est à %s de jouer (%s) :%n", joueurs[tour].nom(), joueurs[tour].pion());
 			int[] saisie;
 			do {
-				saisie = Saisir.saisir();
+				saisie = m_console.saisirCoordonnees();
 			} while (!caseLibre(saisie[0], saisie[1]));
 			
 			poserPion(saisie[0], saisie[1]);
