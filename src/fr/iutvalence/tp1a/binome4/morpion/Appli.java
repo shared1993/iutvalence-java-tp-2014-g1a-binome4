@@ -1,34 +1,32 @@
 package fr.iutvalence.tp1a.binome4.morpion;
 
 import java.util.Scanner;
-import static fr.iutvalence.tp1a.binome4.morpion.Pion.*;
 
 /**
+ * Application.
+ *
  * @author Prinsac & Culty
- * @version 1.0
+ * @version 1.1
  */
-public class Appli {
-	/** Application g�n�rale. */
-	public static void main(String[] args) {
-		Scanner reader = new Scanner(System.in);
-		System.out.println("Entrez le pseudo du joueur 1 (X) :");
-		String pseudoJ1S = reader.nextLine();
-		Joueur joueur1 = new Joueur(pseudoJ1S, X);
-		System.out.println("Entrez le pseudo du joueur 2 (O) :");
-		String pseudoJ2S = reader.nextLine();
-		Joueur joueur2 = new Joueur(pseudoJ2S, O);
-		Score gestionnaireScore = new Score(joueur1, joueur2);
-		boolean rejouer=true;
-		while(rejouer) {
-			Morpion partie = new Morpion(joueur1, joueur2, gestionnaireScore);
-			partie.jouer();
-			Scanner rej = new Scanner(System.in);
-			System.out.println("Voulez-vous rejouer ?");
-			System.out.println("1 pour rejouer, 0 pour arrêter.");
-			int demande = rej.nextInt();
-			if(demande == 1)
-				rejouer = true;
-			else rejouer = false;
-		}
-	}
+@SuppressWarnings("HardCodedStringLiteral")
+public final class Appli {
+    /** Application générale. */
+    public static void main(final String... args) {
+        final Scanner reader = new Scanner(System.in, "UTF-8");
+        System.out.println("Entrez le pseudo du joueur 1 (X) :");
+        final String pseudoJ1S = reader.nextLine();
+        final Joueur joueur1 = new Joueur(pseudoJ1S, Pion.JOUEUR1);
+        System.out.println("Entrez le pseudo du joueur 2 (O) :");
+        final String pseudoJ2S = reader.nextLine();
+        final Joueur joueur2 = new Joueur(pseudoJ2S, Pion.JOUEUR2);
+        final Score gestionnaireScore = new Score(joueur1, joueur2);
+        boolean rejouer = true;
+        while (rejouer) {
+            final Morpion partie = new Morpion(joueur1, joueur2, gestionnaireScore);
+            partie.jouer();
+            System.out.println("Voulez-vous rejouer ?");
+            System.out.println("1 pour rejouer, 0 pour arrêter.");
+            rejouer = reader.nextInt() == 1;
+        }
+    }
 }
