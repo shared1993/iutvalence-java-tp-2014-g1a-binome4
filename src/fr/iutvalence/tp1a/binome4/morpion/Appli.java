@@ -22,7 +22,7 @@ public final class Appli {
         final Score gestionnaireScore = new Score(joueur1, joueur2);
         boolean rejouer = true;
         while (rejouer) {
-            final Morpion partie = new Morpion(joueur1, joueur2, gestionnaireScore);
+            final Partie partie = new Partie(joueur1, joueur2, gestionnaireScore);
             partie.jouer();
             System.out.println("Voulez-vous rejouer ?");
             System.out.println("1 pour rejouer, 0 pour arrêter.");
