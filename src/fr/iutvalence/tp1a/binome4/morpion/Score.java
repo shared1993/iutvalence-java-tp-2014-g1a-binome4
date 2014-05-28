@@ -24,7 +24,7 @@ public final class Score {
     private int m_scoreNul;
 
     /** Constructeur de Score avec les 2 noms des joueurs. */
-    public Score(final Joueur joueur1, final Joueur joueur2) {
+    public void Score(final Joueur joueur1, final Joueur joueur2) {
         m_joueur1 = joueur1;
         m_joueur2 = joueur2;
         m_scoreJ1 = m_scoreJ2 = m_scoreNul = 0;
